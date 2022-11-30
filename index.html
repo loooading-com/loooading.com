@@ -1,38 +1,192 @@
-<!DOCTYPE html>
-<html>
 <head>
-	<title>Loooading...</title>
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+        body {
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            color: #333;
+        }
+        p {
+            line-height: 1.4;
+            margin-top: 0;
+        }
+        a {
+            color: #D32F35;
+        }
+        .top-edge-component {
+            width: 358px;
+            height: 180px;
+            position: absolute;
+            max-width: 360px;
+            background: #fff;
+            border-top-right-radius: 180px;
+            border-top-left-radius: 180px;
+            border: 1px solid #333;
+        }
+        .left-edge-component {
+            width: 180px;
+            height: 358px;
+            position: absolute;
+            max-width: 360px;
+            background: #fff;
+            border-top-left-radius: 180px;
+            border-bottom-left-radius: 180px;
+            border: 1px solid #333;
+        }
+        .hank {
+            width: 50px;
+            height: 400px;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #333;
+        }
+        .tab-component {
+            display: flex;
+            height: 360px;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            max-width: 360px;
+            background: #fff;
+        }
+        .navigation-wrap {
+            margin-bottom: 0;
+            margin-top: 0;
+            width: 100%;
+            padding-left: 0;
+        }
+        .tab-component .navigation-wrap {
+            display: flex;
+            flex-direction: row;
+        }
+        .tab-component .navigation-wrap li {
+            flex: 1;
+            font-weight: 700;
+            text-align: center;
+            padding: 30px 10px;
+            border-top: 1px solid #333;
+            border-right: 1px solid #333;
+            font-size: 40px;
+            position: relative;
+        }
+        .tab-component .navigation-wrap li label {
+            pointer-events: none;
+            display: block;
+        }
+        .tab-component .navigation-wrap li:not(.active) {
+            cursor: pointer;
+            border-bottom: 1px solid #333;
+        }
+        .tab-component .navigation-wrap li:not(.active):hover {
+            background: #fafafa;
+        }
+        .tab-component .navigation-wrap li:not(.active):after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .tab-component .navigation-wrap li:first-child {
+            border-left: 1px solid #333;
+        }
+        .tab-component .content-wrap {
+            border: 1px solid #333;
+            height:100%;
+            border-top: 0;
+        }
+        .tab-component .content-wrap .content {
+            opacity: 0;
+            pointer-events: none;
+            padding: 30px;
+            position: absolute;
+            transform: translateY(10px);
+        }
+        .tab-component .content-wrap .content.active {
+            opacity: 1;
+            pointer-events: all;
+            position: static;
+            padding: 1rem;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            const tabs = document.getElementsByClassName("tab")
+            const content = document.getElementsByClassName("content")
+            const tabChange = function() {
+                const clickId = this.getAttribute("data-id")
+                Array.from(tabs).forEach(function(element) {
+                    const elementId = element.getAttribute("data-id")
+                    if(elementId === clickId){
+                        element.classList.add("active")
+                    } else {
+                        element.classList.remove("active")
+                    }
+                });
+                Array.from(content).forEach(function(element) {
+                    const elementId = element.getAttribute("data-id")
+                    if(elementId === clickId){
+                        element.classList.add("active")
+                    } else {
+                        element.classList.remove("active")
+                    }
+                });
+            }
+            Array.from(tabs).forEach(function(element) {
+                element.addEventListener('click', tabChange)
+            });
+        });
+    </script>
 </head>
-<body style="margin: 2rem;">
-	<div style="width: 200px">
-		<a href="./index.html">
-			<img style="margin-bottom: 2rem;" src="./assets/hourglass.png"/>	
-		</a>
-	</div>
-	<div style="min-height: 100vh; display: grid; grid-template-columns: 200px 1fr;">
-		<div style="font-family: sans-serif;">
-				<div>
-					<a href="./principles.html" style="color: black">Principles</a>
-				</div>
-				<div>
-			    	<a href="./base.html" style="color: black">Base</a>
-			    </div>
-			    <div>
-			    	<a href="./food.html" style="color: black">Food</a>
-			    </div>
-			
-		</div>
-		<div style="font-family: sans-serif; margin-left: 2rem;">
-			<h3 style="margin: 0">Welcome to our little corner of the internet.</h3>
-			<p>Like everyone else we are a perfect work in progress, just loading.</p>
-
-			<video src="assets/lizardvideo.mov" style="width: 50vw; opacity: 75%;" controls />
-		</div>
-	</div>
-	<div style="width: 100%; background: black; height: 2rem; display:grid; justify-content: center; align-content: center">
-		<p style="color: white;">just another work in progress</p>
-	</div>
-	
-	
+<body>
+    <img style=" z-index: 40; position: fixed; top: 0; left: 20px; height:100px; width: 100px;" src="./heart01.png"/>
+    <img style=" z-index: 40; position: fixed; top: 30px; left: 140px; height:30px; width: auto;" src="./loooading.png"/>
+    <div class="tab-component">
+        <div class="top-edge-component" style="z-index: 10; top: -180px; left: 0px;">
+        </div>
+        <div class="left-edge-component" style=" z-index: 10; left: -180px; top: 0px;">
+        </div>
+        <div class="hank" style=" left: -120px; top: -295px; transform: rotateY(0deg) rotate(-45deg);">
+        </div>
+        <ul class="navigation-wrap" style="list-style: none; z-index: 20; background: white;">
+            <li class="tab active" data-id="1"><label>us</label></li>
+            <li class="tab" data-id="2"><label>❦</label></li>
+            <li class="tab" data-id="3"><label>✂︎</label></li>
+        </ul>
+        <div class="content-wrap">
+            <div class="content active" data-id="1">
+                <p>LOOOADING is a little design studio run by Ash Kelleher & Jona Skjøtt.</p> 
+                <p>Try our paperweaving adventcalendar <a href="https://www.xn--fletvrk-qxa.dk/">fletværk.dk</a></p>
+                <p>Or follow us on <a href="https://www.instagram.com/looooooooooooooading/">Instagram</a></p>
+            </div>
+            <div class="content" data-id="2">
+                <p>We make games, tools, and folkcraft. We hope to start making these publicly available soon.</p>
+            </div>
+            <div class="content" data-id="3">
+                <p>We love paper weaving so much that we made a little winter advent calendar.</p>
+                <p>It is free and available at <a href="https://www.xn--fletvrk-qxa.dk/">fletværk.dk</a></p>
+            </div>
+        </div>
+    </div>
+    <form style="z-index: 30; background: #D1D1C6; position: fixed; bottom: 0; height: 80px; left: 0; margin-bottom: 0; width: 100%; border:1px solid #ccc;padding:3px;text-align:center;" action="https://tinyletter.com/loooading" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/loooading', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+        <p style=" height: 20px; line-height: 30px; margin-top: 10px; font-weight: bold; margin-bottom: 5px;"><label for="tlemail"> <span style="line-height: 0px; position: relative; top: 7px; padding-top: 10px; font-size: 40px;">✒︎</span> Subscribe to our quarterly <a href="https://tinyletter.com/loooading">seasonal account</a>!</label></p>
+        <div style="display: flex; width: 100%; align-items: center; justify-content: center;">
+            <div style="display: flex; width: 200px; height: 20px; margin-top: 10px;">
+                <p><input type="text" style=" height: 20px; border: none; margin-right: 5px; width:140px" name="email" id="tlemail" /></p>
+                <input type="hidden" value="1" name="embed"/>
+                <input style="height: 20px; margin: auto; background: #343434; border: none; color: white; padding: 3px; padding-left: 10px; padding-right: 10px;" type="submit" value="subscribe" />
+            </div>
+        </div>
+        <p></p></form>
 </body>
-</html>
